@@ -5,6 +5,17 @@ html {
   box-sizing: inherit;
 }
 
+:root {
+  --mirage: #1f1f3d;
+  --rhino: #353567;
+  --east-bay: #3E4278; /* card border */
+  --butterfly-bush: #5356A4;
+  --wistful: #A9AAD2;
+  --lavender-gray: #bfbfdd; /* replace with wistful? */
+  --whisper: #EAEAF4;
+  --white: #fff;
+}
+
 .content {
   height: 100vh;
   display: grid;
@@ -12,15 +23,19 @@ html {
 }
 
 .sidebar {
-  background-color: #1f1f3d;
+  background-color: var(--mirage);
+}
+
+.sidebar h1 {
+  color: white;
 }
 
 .card-form {
-  background-color: #A9AAD2;
+  background-color: var(--wistful);
 }
 
 .cards-container {
-  background-color: #EAEAF4;
+  background-color: var(--whisper);
 }
 
 .card {
@@ -28,5 +43,6 @@ html {
 }
 
 .card-header {
-
+  background-color: var(--mirage);
+  height: 50px;
 }
