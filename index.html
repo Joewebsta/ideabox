@@ -16,22 +16,24 @@
       </header>
     </aside>
     <main class="main">
-      <section class="card-form">
-        <form action="">
-          <div>
-            <label for="title">Title</label>
-            <input type="text" name="title">
-          </div>
-          <div>
-            <label for="Body">Body</label>
-            <input type="text" name="body">
-          </div>
-          <div>
-            <input type="button" value="Save">
-          </div>
-          <div>
-            <input type="text" value="Search ideas">
-          </div>
+      <section class="card-form-container">
+        <form id="card-form" action="">
+          <ul>
+            <li class="title">
+              <label for="">Title</label>
+              <input type="text">
+            </li>
+            <li class="body">
+              <label for="">Body</label>
+              <input type="text">
+            </li>
+            <li class="save">
+              <button class="button-save">Save</button>
+            </li>
+            <li class="search">
+              <input type="text" placeholder="Search ideas">
+            </li>
+          </ul>
         </form>
       </section>
       <section class="cards-container">
