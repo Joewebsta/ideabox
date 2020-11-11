@@ -180,7 +180,17 @@ textarea {
 
 .card-header {
   background-color: var(--mirage);
-  height: 30px;
+  height: 34px;
+  padding: 0 5px ;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header img {
+  width: 28px;
+  cursor: pointer;
 }
 
 .card-body {
@@ -203,11 +213,23 @@ textarea {
 .card-footer {
   background-color: var(--butterfly-bush);
   border-top: 2px solid var(--east-bay);
-  padding: 8px;
+  padding: 2px;
+  display: grid;
+  grid-gap: 0px;
+  grid-template-columns: auto auto;
+  align-items: center;
+  justify-content: start;
+  cursor: pointer;
+}
+
+.card-footer img {
+  width: 28px;
+
 }
 
 .card-footer p {
+  display: inline-block;
   color: var(--white);
   font-weight: 700;
-  font-size: 14px;
+  font-size: 15px;
 }
