@@ -9,79 +9,79 @@
 </head>
 
 <body>
-  <div class="content">
+  <section class="content">
     <aside class="sidebar">
       <header>
         <h1>IdeaBox</h1>
       </header>
     </aside>
-    <main class="main">
+    <section class="forms">
       <section class="card-form-container">
-        <form id="card-form" action="">
-          <ul>
-            <li class="title">
-              <label for="">Title</label>
-              <input type="text">
-            </li>
-            <li class="body">
-              <label for="">Body</label>
-              <input type="text">
-            </li>
-            <li class="save">
-              <button class="button-save">Save</button>
-            </li>
-            <li class="search">
-              <input type="text" placeholder="Search ideas">
-            </li>
-          </ul>
+        <form class="card-form" action="">
+          <p>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title">
+          </p>
+          <p>
+            <label for="body">Body</label>
+            <textarea name="body" id="body" cols="" rows=""></textarea>
+          </p>
+          <p>
+            <button type="submit">Save</button>
+          </p>
         </form>
       </section>
-      <section class="cards-container">
-        <div class="card">
-          <header class="card-header"></header>
-          <section class="card-body">
-            <h2>Idea title</h2>
-            <p>Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion! Cloth talk.</p>
-          </section>
-          <footer class="card-footer">
-            <p>Comment</p>
-          </footer>
-        </div>
-        <div class="card">
-          <header class="card-header"></header>
-          <section class="card-body">
-            <h2>Idea title</h2>
-            <p>Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion! Cloth talk.</p>
-          </section>
-          <footer class="card-footer">
-            <p>Comment</p>
-          </footer>
-        </div>
-        <div class="card">
-          <header class="card-header"></header>
-          <section class="card-body">
-            <h2>Idea title</h2>
-            <p>Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion! Cloth talk.</p>
-          </section>
-          <footer class="card-footer">
-            <p>Comment</p>
-          </footer>
-        </div>
-        <div class="card">
-          <header class="card-header"></header>
-          <section class="card-body">
-            <h2>Idea title</h2>
-            <p>Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion! Cloth talk.</p>
-          </section>
-          <footer class="card-footer">
-            <p>Comment</p>
-          </footer>
-        </div>
+      <section class="search-form-container">
+        <form action="">
+          <p>
+            <input type="search" name="search" id="search" placeholder="Search ideas">
+          </p>
+        </form>
       </section>
-
-    </main>
-
-  </div>
+    </section>
+    <section class="cards">
+      <div class="card">
+        <header class="card-header"></header>
+        <section class="card-body">
+          <h2>Idea title</h2>
+          <p>Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion! Cloth talk.</p>
+        </section>
+        <footer class="card-footer">
+          <p>Comment</p>
+        </footer>
+      </div>
+      <div class="card">
+        <header class="card-header"></header>
+        <section class="card-body">
+          <h2>Idea title</h2>
+          <p>Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion! Cloth talk.</p>
+        </section>
+        <footer class="card-footer">
+          <p>Comment</p>
+        </footer>
+      </div>
+      <div class="card">
+        <header class="card-header"></header>
+        <section class="card-body">
+          <h2>Idea title</h2>
+          <p>Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion! Cloth talk.</p>
+        </section>
+        <footer class="card-footer">
+          <p>Comment</p>
+        </footer>
+      </div>
+      <div class="card">
+        <header class="card-header"></header>
+        <section class="card-body">
+          <h2>Idea title</h2>
+          <p>Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion! Cloth talk.</p>
+        </section>
+        <footer class="card-footer">
+          <p>Comment</p>
+        </footer>
+      </div>
+    </section>
+  </section>
   <script src="./src/main.js"></script>
 </body>
 

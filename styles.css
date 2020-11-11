@@ -33,19 +33,29 @@ input {
   height: 100vh;
   display: grid;
   grid-template-columns: 300px 1fr;
+  grid-template-areas: 
+    "sidebar forms"
+    "sidebar cards";
 }
+
+/* || SIDEBAR */
 
 .sidebar {
   background-color: var(--mirage);
+  grid-area: sidebar;
 }
 
 .sidebar h1 {
   color: white;
 }
 
-.main {
-  background-color: var(--whisper);
+/* || FORMS */
+
+.forms {
+  grid-area: forms;
 }
+
+
 
 .card-form-container {
   background-color: var(--wistful);
@@ -92,7 +102,9 @@ input {
   font-size: 20px;
 }
 
-.cards-container {
+/* || CARD */
+
+.cards {
   padding: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
