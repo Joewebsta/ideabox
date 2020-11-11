@@ -233,3 +233,28 @@ textarea {
   font-weight: 700;
   font-size: 15px;
 }
+
+/* COMMENTS */
+.comment {
+  padding: 10px;
+  background-color: var(--lavender-gray);
+  display: grid;
+  justify-items: end;
+}
+
+.comment img {
+  width: 28px;
+}
+
+.comment form {
+  width: 100%;
+}
+
+.comment textarea {
+  width: 100%;
+  resize: none;
+}
+
+.comment button {
+  /* width: 100%; */
+}
