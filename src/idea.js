@@ -6,5 +6,3 @@ class Idea {
     this.star = false;
   }
 }
-
-console.log('idea!')
