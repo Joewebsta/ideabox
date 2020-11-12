@@ -133,7 +133,7 @@ textarea {
   font-weight: 700;
   padding: 10px;
   color: white;
-  background-color: #353567;
+  background-color: var(--rhino);
   cursor: pointer;
 }
 
@@ -146,7 +146,7 @@ textarea {
   background-size: 55%;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #353567;
+  background-color: var(--rhino);
   position: absolute;
   top: 2px;
   left: 2px;
@@ -172,6 +172,8 @@ textarea {
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   align-items: start;
+  align-content: start;
+  grid-auto-flow: dense;
 }
 
 .card {
@@ -224,7 +226,6 @@ textarea {
 
 .card-footer img {
   width: 28px;
-
 }
 
 .card-footer p {
@@ -237,9 +238,10 @@ textarea {
 /* COMMENTS */
 .comment {
   padding: 10px;
-  background-color: var(--lavender-gray);
+  background-color: var(--wistful);
   display: grid;
-  justify-items: end;
+  /* grid-gap: 10px; */
+  /* justify-items: start; */
 }
 
 .comment img {
@@ -250,11 +252,40 @@ textarea {
   width: 100%;
 }
 
+.comment .comment-body {
+  border-bottom: 1px solid var(--east-bay);
+  padding: 10px 0;
+}
+
+.comment .comment-body:first-child {
+  padding-top: 0;
+}
+
+.comment p:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
 .comment textarea {
   width: 100%;
+  margin: 10px 0 8px;
   resize: none;
+  border: 1px solid var(--rhino);
+  padding: 6px;
 }
 
 .comment button {
-  /* width: 100%; */
+  padding: 3px 6px;
+  margin-right: 4px;
+  border-radius: 4px;
+  border: 2px solid var(--butterfly-bush);
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background-color: var(--rhino);
+  cursor: pointer;
+}
+
+.comment .cancel {
+  background-color: var(--butterfly-bush);
 }
