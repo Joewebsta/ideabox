@@ -1,19 +1,21 @@
-let cardForm = document.querySelector(".js-card-form");
-let cardTitle = document.querySelector(".js-card-form-title");
-let cardBody = document.querySelector(".js-card-form-body");
-let saveButton = document.querySelector('.js-save-button');
+const cardForm = document.querySelector(".js-card-form");
+const cardTitle = document.querySelector(".js-card-form-title");
+const cardBody = document.querySelector(".js-card-form-body");
+const saveButton = document.querySelector('.js-save-button');
 
 let ideas = [];
 
 function createIdea(e) {
-  e.preventDefault();
-  let title = cardTitle.value;
-  let body = cardBody.value;
-  let idea = new Idea(title, body);
-
-  cardForm.reset();
-
-  console.log(idea);
+  const title = cardTitle.value;
+  const body = cardBody.value;
+  return new Idea(title, body);
 }
   
-saveButton.addEventListener('click', createIdea);
+function handleSaveClick(e) {
+  e.preventDefault();
+
+  let idea = createIdea();
+  // idea.saveToStorage();
+}
+
+saveButton.addEventListener('click', handleSaveClick);
