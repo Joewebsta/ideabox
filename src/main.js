@@ -14,8 +14,8 @@ function createIdea(e) {
 function handleSaveClick(e) {
   e.preventDefault();
 
-  let idea = createIdea();
-  // idea.saveToStorage();
+  createIdea().saveToStorage();
+  cardForm.reset();
 }
 
 saveButton.addEventListener('click', handleSaveClick);
