@@ -78,6 +78,7 @@ function handleClick(e) {
   saveIdea(e);
   displayIdea();
   cardForm.reset();
+  saveButton.disabled = true;
 }
 
 function monitorCardFields() {
