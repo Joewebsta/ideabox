@@ -3,6 +3,7 @@ const cardTitle = document.querySelector(".js-card-form-title");
 const cardBody = document.querySelector(".js-card-form-body");
 const saveButton = document.querySelector('.js-save-button');
 
+
 let ideas = [];
 
 function createIdea(e) {
@@ -11,11 +12,21 @@ function createIdea(e) {
   return new Idea(title, body);
 }
   
-function handleSaveClick(e) {
+function saveIdea(e) {
   e.preventDefault();
+  const idea = createIdea();
 
-  createIdea().saveToStorage();
+  idea.saveToStorage();
+  ideas.push(idea);
+
   cardForm.reset();
 }
 
-saveButton.addEventListener('click', handleSaveClick);
+function deleteIdea(id) {
+ const idea = ideas.find(idea => idea.id === id);
+ const ideaIdx = ideas.findIndex(idea => idea.id === id);
+ ideas.splice(ideaIdx, 1);
+ idea.deleteFromStorage();
+}
+
+saveButton.addEventListener('click', saveIdea);

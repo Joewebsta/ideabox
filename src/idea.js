@@ -9,9 +9,21 @@ class Idea {
   saveToStorage() {
     this.initializeStorage();
     
-    let ideas = JSON.parse(localStorage.getItem('ideas'));
+    const ideas = this.retreiveStorage();
     ideas.push(this);
     localStorage.setItem('ideas', JSON.stringify(ideas));
+  }
+
+  deleteFromStorage() {
+    const ideas = this.retreiveStorage();
+    const ideaIdx = ideas.findIndex(idea => idea.id === this.id);
+    ideas.splice(ideaIdx, 1);
+    localStorage.setItem('ideas', JSON.stringify(ideas)); //THIS LINE IS DUPLICATED FROM SAVESTORAGE ABOVE
+    // console.log(ideaIdx);
+  }
+
+  retreiveStorage() {
+    return JSON.parse(localStorage.getItem('ideas'));
   }
 
   initializeStorage() {
