@@ -11,19 +11,22 @@ class Idea {
     
     const ideas = this.retreiveStorage();
     ideas.push(this);
-    localStorage.setItem('ideas', JSON.stringify(ideas));
+    this.setStorage(ideas);
   }
 
   deleteFromStorage() {
     const ideas = this.retreiveStorage();
     const ideaIdx = ideas.findIndex(idea => idea.id === this.id);
     ideas.splice(ideaIdx, 1);
-    localStorage.setItem('ideas', JSON.stringify(ideas)); //THIS LINE IS DUPLICATED FROM SAVESTORAGE ABOVE
-    // console.log(ideaIdx);
+    this.setStorage(ideas);
   }
 
   retreiveStorage() {
     return JSON.parse(localStorage.getItem('ideas'));
+  }
+
+  setStorage(ideas) {
+    localStorage.setItem('ideas', JSON.stringify(ideas));
   }
 
   initializeStorage() {
