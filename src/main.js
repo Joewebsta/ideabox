@@ -52,6 +52,28 @@ function createCardHTML(title, body) {
   `
 }
 
+function handlePageLoad() {
+  populateIdeasArray();
+  displayCards();
+}
+
+function displayCards() {
+  ideas.forEach(idea => {
+    const ideaHTML = createCardHTML(idea.title, idea.body);
+    cards.insertAdjacentHTML('beforeend', ideaHTML);
+  });
+}
+
+function populateIdeasArray() {
+  const localStorageIdeas = localStorage.getItem('ideas');
+  
+  if (!localStorageIdeas) {
+    ideas = [];
+  } else {
+    ideas = JSON.parse(localStorage.getItem('ideas'));
+  }
+}
+
 function handleClick(e) {
   saveIdea(e);
   displayIdea();
@@ -66,5 +88,6 @@ function monitorCardFields() {
   }
 }
 
+window.addEventListener('load', handlePageLoad)
 saveButton.addEventListener('click', handleClick);
 cardForm.addEventListener('keyup', monitorCardFields);
