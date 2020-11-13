@@ -29,4 +29,13 @@ function deleteIdea(id) {
  idea.deleteFromStorage();
 }
 
+function monitorCardFields() {
+  if (cardTitle.value.length && cardBody.value.length) {
+    saveButton.disabled = false;
+  } else {
+    saveButton.disabled = true;
+  }
+}
+
 saveButton.addEventListener('click', saveIdea);
+cardForm.addEventListener('keyup', monitorCardFields);

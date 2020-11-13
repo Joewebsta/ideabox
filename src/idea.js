@@ -9,19 +9,19 @@ class Idea {
   saveToStorage() {
     this.initializeStorage();
     
-    const ideas = this.retreiveStorage();
+    const ideas = this.retreiveFromStorage();
     ideas.push(this);
     this.setStorage(ideas);
   }
 
   deleteFromStorage() {
-    const ideas = this.retreiveStorage();
+    const ideas = this.retreiveFromStorage();
     const ideaIdx = ideas.findIndex(idea => idea.id === this.id);
     ideas.splice(ideaIdx, 1);
     this.setStorage(ideas);
   }
 
-  retreiveStorage() {
+  retreiveFromStorage() {
     return JSON.parse(localStorage.getItem('ideas'));
   }
 

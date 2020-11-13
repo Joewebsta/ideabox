@@ -137,6 +137,11 @@ textarea {
   cursor: pointer;
 }
 
+.card-form button:disabled {
+  background:var(--wistful);
+  cursor: not-allowed;
+}
+
 .search-form {
   position: relative;
 }
