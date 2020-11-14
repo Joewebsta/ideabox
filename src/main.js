@@ -6,12 +6,15 @@ const cards = document.querySelector('.js-cards');
 
 let ideas = [];
 
-function createIdea(e) {
-  const title = cardTitle.value;
-  const body = cardBody.value;
-  return new Idea(title, body);
+// SAVE AND DISPLAY IDEA
+
+function handleSaveBtnClick(e) {
+  saveIdea(e);
+  displayIdea();
+  cardForm.reset();
+  saveButton.disabled = true;
 }
-  
+
 function saveIdea(e) {
   e.preventDefault();
   const idea = createIdea();
@@ -20,11 +23,10 @@ function saveIdea(e) {
   ideas.push(idea);
 }
 
-function deleteIdea(id) {
- const idea = ideas.find(idea => idea.id === id);
- const ideaIdx = ideas.findIndex(idea => idea.id === id);
- ideas.splice(ideaIdx, 1);
- idea.deleteFromStorage();
+function createIdea(e) {
+  const title = cardTitle.value;
+  const body = cardBody.value;
+  return new Idea(title, body);
 }
 
 function displayIdea() {
@@ -34,8 +36,8 @@ function displayIdea() {
   cards.insertAdjacentHTML('beforeend', ideaHTML);
 }
 
-function createCardHTML(title, body) {
-  return `<div class="card">
+function createCardHTML(title, body, id) {
+  return `<div class="card" data-id="${id}">
     <header class="card-header js-card-header">
       <img src="./assets/star.svg" class="js-favorite-icon" alt="Star icon">
       <img src="./assets/delete.svg" class="js-delete-icon" alt="Delete icon">
@@ -48,20 +50,14 @@ function createCardHTML(title, body) {
       <img src="assets/comment.svg" alt="Comment icon">
       <p>Comment</p>
     </footer>
-  </div>
-  `
-}
+  </div>`
+}  
+
+// RELOAD PAGE AND DISPLAY IDEAS
 
 function handlePageLoad() {
   populateIdeasArray();
   displayCards();
-}
-
-function displayCards() {
-  ideas.forEach(idea => {
-    const ideaHTML = createCardHTML(idea.title, idea.body);
-    cards.insertAdjacentHTML('beforeend', ideaHTML);
-  });
 }
 
 function populateIdeasArray() {
@@ -71,23 +67,19 @@ function populateIdeasArray() {
     ideas = [];
   } else {
     ideas = JSON.parse(localStorage.getItem('ideas'));
+    ideas = ideas.map(idea => new Idea(idea.title, idea.body, idea.id,));
   }
 }
 
-function handleSaveBtnClick(e) {
-  saveIdea(e);
-  displayIdea();
-  cardForm.reset();
-  saveButton.disabled = true;
+function displayCards() {
+  ideas.forEach(idea => {
+    const ideaHTML = createCardHTML(idea.title, idea.body, idea.id);
+    cards.insertAdjacentHTML('beforeend', ideaHTML);
+  });
 }
 
-function monitorCardFields() {
-  if (cardTitle.value.length && cardBody.value.length) {
-    saveButton.disabled = false;
-  } else {
-    saveButton.disabled = true;
-  }
-}
+
+// FAVORITE IDEA
 
 function handleCardClick(e) {
   const classes = e.target.classList;
@@ -103,6 +95,11 @@ function handleCardClick(e) {
 
 function favoriteCard(e) {
   toggleFavoriteIcon(e);
+  
+  const id = +e.target.closest('.card').dataset.id;
+  const idea = ideas.find(idea => idea.id === id);
+  idea.star = !idea.star;
+  idea.updateIdea('star', idea.star);
 }
 
 function toggleFavoriteIcon(e) {
@@ -113,7 +110,26 @@ function toggleFavoriteIcon(e) {
   }
 }
 
-window.addEventListener('load', handlePageLoad);
+// DELETE IDEA
+
+function deleteIdea(id) {
+  const idea = ideas.find(idea => idea.id === id);
+  const ideaIdx = ideas.findIndex(idea => idea.id === id);
+  ideas.splice(ideaIdx, 1);
+  idea.deleteFromStorage();
+ }
+
+// FORM VALIDATION
+
+function monitorCardFields() {
+  if (cardTitle.value.length && cardBody.value.length) {
+    saveButton.disabled = false;
+  } else {
+    saveButton.disabled = true;
+  }
+}
+
 saveButton.addEventListener('click', handleSaveBtnClick);
-cardForm.addEventListener('keyup', monitorCardFields);
+window.addEventListener('load', handlePageLoad);
 cards.addEventListener('click', handleCardClick);
+cardForm.addEventListener('keyup', monitorCardFields);

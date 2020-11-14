@@ -1,9 +1,9 @@
 class Idea {
-  constructor(title, body) {
-    this.id = Date.now();
+  constructor(title, body, id=Date.now(), star=false ) {
     this.title = title;
     this.body = body;
-    this.star = false;
+    this.id = id;
+    this.star = star;
   }
 
   saveToStorage() {
@@ -18,6 +18,13 @@ class Idea {
     const ideas = this.retreiveFromStorage();
     const ideaIdx = ideas.findIndex(idea => idea.id === this.id);
     ideas.splice(ideaIdx, 1);
+    this.setStorage(ideas);
+  }
+
+  updateIdea(key, val) {
+    const ideas = this.retreiveFromStorage();
+    const ideaIdx = ideas.findIndex(idea => idea.id === this.id);
+    ideas[ideaIdx][key] = val;
     this.setStorage(ideas);
   }
 
