@@ -36,9 +36,9 @@ function displayIdea() {
 
 function createCardHTML(title, body) {
   return `<div class="card">
-    <header class="card-header">
-      <img src="./assets/star.svg" alt="Star icon">
-      <img src="./assets/delete.svg" alt="Delete icon">
+    <header class="card-header js-card-header">
+      <img src="./assets/star.svg" class="js-favorite-icon" alt="Star icon">
+      <img src="./assets/delete.svg" class="js-delete-icon" alt="Delete icon">
     </header>
     <section class="card-body">
       <h2>${title}</h2>
@@ -74,7 +74,7 @@ function populateIdeasArray() {
   }
 }
 
-function handleClick(e) {
+function handleSaveBtnClick(e) {
   saveIdea(e);
   displayIdea();
   cardForm.reset();
@@ -89,6 +89,31 @@ function monitorCardFields() {
   }
 }
 
-window.addEventListener('load', handlePageLoad)
-saveButton.addEventListener('click', handleClick);
+function handleCardClick(e) {
+  const classes = e.target.classList;
+
+  if (classes.contains('js-favorite-icon')) {
+    favoriteCard(e);
+  }
+  
+  if (classes.contains('js-delete-icon')) {
+    console.log('delete');
+  }
+}
+
+function favoriteCard(e) {
+  toggleFavoriteIcon(e);
+}
+
+function toggleFavoriteIcon(e) {
+  if (e.target.src.includes('active')) {
+    e.target.src = "../assets/star.svg";
+  } else {
+    e.target.src = "../assets/star-active.svg";
+  }
+}
+
+window.addEventListener('load', handlePageLoad);
+saveButton.addEventListener('click', handleSaveBtnClick);
 cardForm.addEventListener('keyup', monitorCardFields);
+cards.addEventListener('click', handleCardClick);
