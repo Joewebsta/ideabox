@@ -36,10 +36,13 @@ function displayIdea() {
   cards.insertAdjacentHTML('beforeend', ideaHTML);
 }
 
-function createCardHTML(title, body, id) {
+function createCardHTML(title, body, id, star) {
+  const iconName = star ? '-active': ''
+  star.svg
+  
   return `<div class="card" data-id="${id}">
     <header class="card-header js-card-header">
-      <img src="./assets/star.svg" class="js-favorite-icon" alt="Star icon">
+      <img src="./assets/star${iconName}.svg" class="js-favorite-icon" alt="Star icon">
       <img src="./assets/delete.svg" class="js-delete-icon" alt="Delete icon">
     </header>
     <section class="card-body">
@@ -67,17 +70,16 @@ function populateIdeasArray() {
     ideas = [];
   } else {
     ideas = JSON.parse(localStorage.getItem('ideas'));
-    ideas = ideas.map(idea => new Idea(idea.title, idea.body, idea.id,));
+    ideas = ideas.map(idea => new Idea(idea.title, idea.body, idea.id, idea.star));
   }
 }
 
 function displayCards() {
   ideas.forEach(idea => {
-    const ideaHTML = createCardHTML(idea.title, idea.body, idea.id);
+    const ideaHTML = createCardHTML(idea.title, idea.body, idea.id, idea.star);
     cards.insertAdjacentHTML('beforeend', ideaHTML);
   });
 }
-
 
 // FAVORITE IDEA
 
