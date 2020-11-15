@@ -114,15 +114,19 @@ function toggleFavoriteIcon(e) {
 // DELETE IDEA
 
 function deleteIdea(e) {
-  const id = +e.target.closest('.card').dataset.id;
-  const idea = ideas.find(idea => idea.id === id);
-  const ideaIdx = ideas.findIndex(idea => idea.id === id);
-  ideas.splice(ideaIdx, 1);
+  const id = findId(e);
+  const idea = findIdea(id); 
+  const ideaIdx = findIdx(id);
+    
   idea.deleteFromStorage();
-  
+  deleteFromIdeas(ideaIdx);
   removeCard(e);
  }
-      
+
+ function deleteFromIdeas(idx) {
+  ideas.splice(idx, 1);
+ }
+
  function removeCard(e) {
    e.target.closest('.card').remove();
  }
@@ -135,6 +139,19 @@ function monitorCardFields() {
   } else {
     saveButton.disabled = true;
   }
+}
+
+// HELPERS
+function findId(e) {
+  return +e.target.closest('.card').dataset.id;
+}
+
+function findIdea(ident) {
+  return ideas.find(idea => idea.id === ident);
+}
+
+function findIdx(id) {
+  return ideas.findIndex(idea => idea.id === id);
 }
 
 saveButton.addEventListener('click', handleSaveBtnClick);
