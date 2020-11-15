@@ -38,7 +38,6 @@ function displayIdea() {
 
 function createCardHTML(title, body, id, star) {
   const iconName = star ? '-active': ''
-  star.svg
   
   return `<div class="card" data-id="${id}">
     <header class="card-header js-card-header">
@@ -91,7 +90,7 @@ function handleCardClick(e) {
   }
   
   if (classes.contains('js-delete-icon')) {
-    console.log('delete');
+    deleteIdea(e);
   }
 }
 
@@ -114,11 +113,18 @@ function toggleFavoriteIcon(e) {
 
 // DELETE IDEA
 
-function deleteIdea(id) {
+function deleteIdea(e) {
+  const id = +e.target.closest('.card').dataset.id;
   const idea = ideas.find(idea => idea.id === id);
   const ideaIdx = ideas.findIndex(idea => idea.id === id);
   ideas.splice(ideaIdx, 1);
   idea.deleteFromStorage();
+  
+  removeCard(e);
+ }
+      
+ function removeCard(e) {
+   e.target.closest('.card').remove();
  }
 
 // FORM VALIDATION
