@@ -3,6 +3,7 @@ const cardTitle = document.querySelector(".js-card-form-title");
 const cardBody = document.querySelector(".js-card-form-body");
 const saveButton = document.querySelector('.js-save-button');
 const cards = document.querySelector('.js-cards');
+const showStarredButton = document.querySelector('.js-starred-button');
 
 let ideas = [];
 
@@ -58,7 +59,7 @@ function createCardHTML(title, body, id, star) {
 
 function handlePageLoad() {
   populateIdeasArray();
-  displayCards();
+  displayCards(ideas);
 }
 
 function populateIdeasArray() {
@@ -72,7 +73,7 @@ function populateIdeasArray() {
   }
 }
 
-function displayCards() {
+function displayCards(ideas) {
   ideas.forEach(idea => {
     const ideaHTML = createCardHTML(idea.title, idea.body, idea.id, idea.star);
     cards.insertAdjacentHTML('beforeend', ideaHTML);
@@ -107,6 +108,37 @@ function toggleFavoriteIcon(e) {
     e.target.src = "../assets/star.svg";
   } else {
     e.target.src = "../assets/star-active.svg";
+  }
+}
+
+// FILTER BY FAVORITES
+function handleShowStarredClick() {
+  const starredIdeas = filterIdeasByStarred();
+  const filteredStatus = showStarredButton.dataset.filtered;
+
+  clearCards();
+  updateFilteredAttr(filteredStatus);
+  updateStarredBtnText(filteredStatus);
+  updateDisplayedCards(starredIdeas, filteredStatus)
+}
+
+function filterIdeasByStarred() {
+  return ideas.filter(idea => idea.star); 
+}
+
+function updateFilteredAttr(filteredStatus) {
+  showStarredButton.dataset.filtered = (filteredStatus === 'false') ? 'true' : 'false';
+}
+
+function updateStarredBtnText(filteredStatus) {
+  showStarredButton.textContent = (filteredStatus === 'false') ? 'Show All Ideas' : 'Show Starred Ideas'; ;
+}
+
+function updateDisplayedCards(starredIdeas, filteredStatus) {
+  if (filteredStatus === 'false') {
+    displayCards(starredIdeas);
+  } else {
+    displayCards(ideas);
   }
 }
 
@@ -153,7 +185,12 @@ function findIdx(id) {
   return ideas.findIndex(idea => idea.id === id);
 }
 
+function clearCards() {
+  cards.textContent = '';
+}
+
 saveButton.addEventListener('click', handleSaveBtnClick);
 window.addEventListener('load', handlePageLoad);
 cards.addEventListener('click', handleCardClick);
 cardForm.addEventListener('keyup', monitorCardFields);
+showStarredButton.addEventListener('click', handleShowStarredClick)
