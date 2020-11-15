@@ -9,30 +9,29 @@ let ideas = [];
 // SAVE AND DISPLAY IDEA
 
 function handleSaveBtnClick(e) {
-  saveIdea(e);
-  displayIdea();
+  e.preventDefault();
+
+  const idea = createIdea();
+  saveIdea(idea);
+  displayIdea(idea);
   cardForm.reset();
   saveButton.disabled = true;
 }
 
-function saveIdea(e) {
-  e.preventDefault();
-  const idea = createIdea();
+function createIdea() {
+  const title = cardTitle.value;
+  const body = cardBody.value;
+  const id = Date.now();
+  return new Idea(title, body, id);
+}
 
-  idea.saveToStorage();
+function saveIdea(idea) {
   ideas.push(idea);
+  idea.saveToStorage();
 }
 
-function createIdea(e) {
-  const title = cardTitle.value;
-  const body = cardBody.value;
-  return new Idea(title, body);
-}
-
-function displayIdea() {
-  const title = cardTitle.value;
-  const body = cardBody.value;
-  const ideaHTML = createCardHTML(title, body);
+function displayIdea(idea) {
+  const ideaHTML = createCardHTML(idea.title, idea.body, idea.id, idea.star);
   cards.insertAdjacentHTML('beforeend', ideaHTML);
 }
 
@@ -117,7 +116,7 @@ function deleteIdea(e) {
   const id = findId(e);
   const idea = findIdea(id); 
   const ideaIdx = findIdx(id);
-    
+
   idea.deleteFromStorage();
   deleteFromIdeas(ideaIdx);
   removeCard(e);
