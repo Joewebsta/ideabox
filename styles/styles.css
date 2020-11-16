@@ -414,6 +414,11 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
   cursor: pointer;
 }
 
+.comment-form button:disabled {
+  background:var(--wistful);
+  cursor: not-allowed;
+}
+
 /* || HELPER */
 .hide {
   display: none;
