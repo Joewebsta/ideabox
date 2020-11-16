@@ -4,6 +4,7 @@ const cardBody = document.querySelector(".js-card-form-body");
 const saveButton = document.querySelector('.js-save-button');
 const cards = document.querySelector('.js-cards');
 const showStarredButton = document.querySelector('.js-starred-button');
+const searchInput = document.querySelector('.js-search');
 
 let ideas = [];
 
@@ -161,6 +162,18 @@ function deleteIdea(e) {
  function removeCard(e) {
    e.target.closest('.card').remove();
  }
+ 
+ // SEARCH
+ function handleSearch(e) {
+   const searchString = e.target.value;
+   const matchingIdeas = filterBySearchString(searchString);
+   clearCards();
+   displayCards(matchingIdeas);
+ }
+ 
+ function filterBySearchString(searchString) {
+   return ideas.filter(idea => (`${idea.title} ${idea.body}`).includes(searchString));
+ }
 
 // FORM VALIDATION
 
@@ -171,6 +184,7 @@ function monitorCardFields() {
     saveButton.disabled = true;
   }
 }
+
 
 // HELPERS
 function findId(e) {
@@ -193,4 +207,5 @@ saveButton.addEventListener('click', handleSaveBtnClick);
 window.addEventListener('load', handlePageLoad);
 cards.addEventListener('click', handleCardClick);
 cardForm.addEventListener('keyup', monitorCardFields);
-showStarredButton.addEventListener('click', handleShowStarredClick)
+showStarredButton.addEventListener('click', handleShowStarredClick);
+searchInput.addEventListener('keyup', handleSearch);
