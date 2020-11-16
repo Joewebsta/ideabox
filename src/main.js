@@ -5,7 +5,10 @@ const saveButton = document.querySelector('.js-save-button');
 const cards = document.querySelector('.js-cards');
 const showStarredButton = document.querySelector('.js-starred-button');
 const searchInput = document.querySelector('.js-search');
+
 const overlay = document.querySelector('.js-modal-overlay');
+const modalCloseButton = document.querySelector('.js-modal-close-button');
+
 
 let ideas = [];
 
@@ -192,6 +195,12 @@ function showModal() {
   overlay.classList.remove('hide');
 }
 
+function hideModal(e) {
+  if (e.target === overlay || e.target === modalCloseButton) {
+    overlay.classList.add('hide');
+  }  
+}
+
 
 // HELPERS
 function findId(e) {
@@ -216,3 +225,5 @@ cards.addEventListener('click', handleCardClick);
 cardForm.addEventListener('keyup', monitorCardFields);
 showStarredButton.addEventListener('click', handleShowStarredClick);
 searchInput.addEventListener('keyup', handleSearch);
+modalCloseButton.addEventListener('click', hideModal);
+overlay.addEventListener('click', hideModal);
