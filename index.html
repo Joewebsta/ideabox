@@ -40,7 +40,7 @@
       </form>
     </section>
     <section class="cards js-cards"></section>
-    <section class="modal-overlay">
+    <section class="modal-overlay js-modal-overlay hide">
       <section class="modal-content">
         <header class="modal-header">
           <h2>Comments</h2>
@@ -48,23 +48,20 @@
         </header>
         <section class="modal-body">
           <ul class="comments">
-            <li class="comment">
+            <li class="comment-empty-state">
+              <p>No comments...</p>
+            </li>
+            <!-- <li class="comment">
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias veniam dolor alias ipsum
                 accusantium modi corrupti neque nulla inventore? Enim labore temporibus ut possimus exercitationem nemo
                 laudantium incidunt laboriosam necessitatibus?</p>
-            </li>
-            <li class="comment">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias veniam dolor alias ipsum
-                accusantium modi corrupti neque nulla inventore? Enim labore temporibus ut possimus exercitationem nemo
-                laudantium incidunt laboriosam necessitatibus?</p>
-            </li>
+            </li> -->
           </ul>
           <form action="" class="comment-form">
             <p>
               <textarea name="comment-textarea" id="" cols="" rows="" placeholder="Enter comment..."></textarea>
             </p>
             <p>
-              <!-- <button class="cancel">Cancel</button> -->
               <button>Add Comment</button>
             </p>
           </form>

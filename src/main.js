@@ -5,6 +5,7 @@ const saveButton = document.querySelector('.js-save-button');
 const cards = document.querySelector('.js-cards');
 const showStarredButton = document.querySelector('.js-starred-button');
 const searchInput = document.querySelector('.js-search');
+const overlay = document.querySelector('.js-modal-overlay');
 
 let ideas = [];
 
@@ -49,12 +50,22 @@ function createCardHTML(title, body, id, star) {
       <h2>${title}</h2>
       <p>${body}</p>
     </section>
-    <footer class="card-footer">
-      <img src="assets/comment.svg" alt="Comment icon">
-      <p>Comment</p>
+    <footer class="card-footer js-card-comment">
+      <img src="assets/comment.svg" alt="Comment icon" class="js-card-comment">
+      <p class="js-card-comment">Comment</p>
     </footer>
   </div>`
-}  
+}
+
+// FORM VALIDATION
+
+function monitorCardFields() {
+  if (cardTitle.value.length && cardBody.value.length) {
+    saveButton.disabled = false;
+  } else {
+    saveButton.disabled = true;
+  }
+}
 
 // RELOAD PAGE AND DISPLAY IDEAS
 
@@ -85,14 +96,14 @@ function displayCards(ideas) {
 
 function handleCardClick(e) {
   const classes = e.target.classList;
+  console.log(e.target)
 
-  if (classes.contains('js-favorite-icon')) {
-    favoriteCard(e);
-  }
+
+  if (classes.contains('js-favorite-icon')) favoriteCard(e);
   
-  if (classes.contains('js-delete-icon')) {
-    deleteIdea(e);
-  }
+  if (classes.contains('js-delete-icon')) deleteIdea(e);
+  
+  if (classes.contains('js-card-comment')) showModal();
 }
 
 function favoriteCard(e) {
@@ -175,14 +186,10 @@ function deleteIdea(e) {
    return ideas.filter(idea => (`${idea.title} ${idea.body}`).includes(searchString));
  }
 
-// FORM VALIDATION
+// MODAL
 
-function monitorCardFields() {
-  if (cardTitle.value.length && cardBody.value.length) {
-    saveButton.disabled = false;
-  } else {
-    saveButton.disabled = true;
-  }
+function showModal() {
+  overlay.classList.remove('hide');
 }
 
 

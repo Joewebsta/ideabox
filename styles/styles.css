@@ -413,3 +413,8 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
   background-color: var(--rhino);
   cursor: pointer;
 }
+
+/* || HELPER */
+.hide {
+  display: none;
+}
