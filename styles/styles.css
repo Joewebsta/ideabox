@@ -342,6 +342,18 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
   color: #fff;
   border-radius: 4px 4px 0 0; 
   font-size: 18px;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header img {
+  width: 30px;
+}
+
+.modal-header img:hover {
+  cursor: pointer;
 }
 
 .modal-body {
