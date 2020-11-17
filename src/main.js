@@ -12,6 +12,8 @@ const modalCloseButton = document.querySelector('.js-modal-close-button');
 const commentTextarea = document.querySelector('.js-comment-textarea');
 const addCommentButton = document.querySelector('.js-add-comment-button');
 
+const commentsContainer = document.querySelector('.js-comments');
+const commentEmptyState = document.querySelector('.js-comment-empty-state');
 
 let ideas = [];
 
@@ -105,7 +107,7 @@ function handleCardClick(e) {
 
   if (classes.contains('js-favorite-icon')) favoriteCard(e);
   if (classes.contains('js-delete-icon')) deleteIdea(e);
-  if (classes.contains('js-card-comment')) handleCommentClick(e);
+  if (classes.contains('js-card-comment')) handleCardCommentClick(e);
 }
 
 function favoriteCard(e) {
@@ -201,22 +203,54 @@ function hideModal(e) {
 }
 
 // COMMENT
-function handleCommentClick(e) {
+function handleCardCommentClick(e) {
   const id = findId(e);
   showModal();
   updateIdeaId(id);
+  // displayComments
   commentTextarea.focus();
 }
 
 function updateIdeaId(id) {
-  console.log(id);
   modalContent.dataset.ideaId = id;
 }
 
 function handleAddCommentClick(e) {
   e.preventDefault();
-  console.log('Add comment click!');
+  const ideaId = +e.target.closest('.js-modal-content').dataset.ideaId;
+  const idea = findIdea(ideaId);
+  const newComment = createComment();
+  const comments = idea.comments;
+  
+  appendComment(newComment, comments);
+  comments.push(newComment);
+  // newComment.saveToStorage(idea);
 
+  commentTextarea.value = '';
+  addCommentButton.disabled = true;
+}
+
+function createComment() {
+  const commentContent = commentTextarea.value;
+  return new Comment(commentContent);
+}
+
+function appendComment(comment, comments) {
+  if (comments.length === 0) {
+    commentEmptyState.classList.add('hide');
+  }
+  
+  // comments.length ? 
+
+  const commentHTML = createCommentHTML(comment);
+  commentsContainer.insertAdjacentHTML('beforeend', commentHTML);
+}
+
+function createCommentHTML(comment) {
+  return `
+    <li class="comment">
+      <p>${comment.content}</p>
+    </li>`;
 }
 
 function monitorCommentField(e) {
