@@ -207,7 +207,7 @@ function handleCardCommentClick(e) {
   const id = findId(e);
   showModal();
   updateIdeaId(id);
-  // displayComments
+  displayComments(e);
   commentTextarea.focus();
 }
 
@@ -215,17 +215,28 @@ function updateIdeaId(id) {
   modalContent.dataset.ideaId = id;
 }
 
+function displayComments(e) {
+  commentsContainer.textContent = '';
+
+  const ideaId = +modalContent.dataset.ideaId;
+  const idea = findIdea(ideaId);
+
+  idea.comments.forEach(comment => {
+    commentsContainer.insertAdjacentHTML('beforeend', createCommentHTML(comment));
+  });
+
+}
+
 function handleAddCommentClick(e) {
   e.preventDefault();
+  
   const ideaId = +e.target.closest('.js-modal-content').dataset.ideaId;
   const idea = findIdea(ideaId);
   const newComment = createComment();
-  const comments = idea.comments;
   
-  appendComment(newComment, comments);
-  comments.push(newComment);
-  // newComment.saveToStorage(idea);
-
+  idea.comments.push(newComment);
+  appendComment(newComment);
+  
   commentTextarea.value = '';
   addCommentButton.disabled = true;
 }
@@ -235,12 +246,10 @@ function createComment() {
   return new Comment(commentContent);
 }
 
-function appendComment(comment, comments) {
-  if (comments.length === 0) {
+function appendComment(comment) {
+  if (!commentEmptyState.classList.contains('hide')) {
     commentEmptyState.classList.add('hide');
   }
-  
-  // comments.length ? 
 
   const commentHTML = createCommentHTML(comment);
   commentsContainer.insertAdjacentHTML('beforeend', commentHTML);
