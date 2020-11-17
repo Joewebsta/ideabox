@@ -7,6 +7,7 @@ const showStarredButton = document.querySelector('.js-starred-button');
 const searchInput = document.querySelector('.js-search');
 
 const overlay = document.querySelector('.js-modal-overlay');
+const modalContent = document.querySelector('.js-modal-content');
 const modalCloseButton = document.querySelector('.js-modal-close-button');
 const commentTextarea = document.querySelector('.js-comment-textarea');
 const addCommentButton = document.querySelector('.js-add-comment-button');
@@ -202,13 +203,19 @@ function hideModal(e) {
 // COMMENT
 function handleCommentClick(e) {
   const id = findId(e);
-  const idea = findIdea(id); 
-  const comments = idea.comments;
-  console.log(comments);
   showModal();
+  updateIdeaId(id);
+  commentTextarea.focus();
 }
 
-function handleAddCommentClick() {
+function updateIdeaId(id) {
+  console.log(id);
+  modalContent.dataset.ideaId = id;
+}
+
+function handleAddCommentClick(e) {
+  e.preventDefault();
+  console.log('Add comment click!');
 
 }
 
