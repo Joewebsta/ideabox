@@ -99,14 +99,10 @@ function displayCards(ideas) {
 
 function handleCardClick(e) {
   const classes = e.target.classList;
-  console.log(e.target)
-
 
   if (classes.contains('js-favorite-icon')) favoriteCard(e);
-  
   if (classes.contains('js-delete-icon')) deleteIdea(e);
-  
-  if (classes.contains('js-card-comment')) showModal();
+  if (classes.contains('js-card-comment')) handleCommentClick(e);
 }
 
 function favoriteCard(e) {
@@ -201,14 +197,27 @@ function hideModal(e) {
   }  
 }
 
+// COMMENT
+function handleCommentClick(e) {
+  const id = findId(e);
+  const idea = findIdea(id); 
+  const comments = idea.comments;
+  console.log(comments);
+  showModal();
+
+
+  
+
+}
+
 
 // HELPERS
 function findId(e) {
   return +e.target.closest('.card').dataset.id;
 }
 
-function findIdea(ident) {
-  return ideas.find(idea => idea.id === ident);
+function findIdea(id) {
+  return ideas.find(idea => idea.id === id);
 }
 
 function findIdx(id) {
