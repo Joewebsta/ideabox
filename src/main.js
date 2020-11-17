@@ -8,6 +8,8 @@ const searchInput = document.querySelector('.js-search');
 
 const overlay = document.querySelector('.js-modal-overlay');
 const modalCloseButton = document.querySelector('.js-modal-close-button');
+const commentTextarea = document.querySelector('.js-comment-textarea');
+const addCommentButton = document.querySelector('.js-add-comment-button');
 
 
 let ideas = [];
@@ -63,7 +65,7 @@ function createCardHTML(title, body, id, star) {
 // FORM VALIDATION
 
 function monitorCardFields() {
-  if (cardTitle.value.length && cardBody.value.length) {
+  if (cardTitle.value && cardBody.value) {
     saveButton.disabled = false;
   } else {
     saveButton.disabled = true;
@@ -204,12 +206,19 @@ function handleCommentClick(e) {
   const comments = idea.comments;
   console.log(comments);
   showModal();
+}
 
-
-  
+function handleAddCommentClick() {
 
 }
 
+function monitorCommentField(e) {
+  if (e.target.value) {
+    addCommentButton.disabled = false;
+  } else {
+    addCommentButton.disabled = true;
+  }
+}
 
 // HELPERS
 function findId(e) {
@@ -228,11 +237,22 @@ function clearCards() {
   cards.textContent = '';
 }
 
-saveButton.addEventListener('click', handleSaveBtnClick);
+// PAGE RELOAD
 window.addEventListener('load', handlePageLoad);
+
+// CARD FORM
+saveButton.addEventListener('click', handleSaveBtnClick);
+
+// CARDS
 cards.addEventListener('click', handleCardClick);
 cardForm.addEventListener('keyup', monitorCardFields);
 showStarredButton.addEventListener('click', handleShowStarredClick);
 searchInput.addEventListener('keyup', handleSearch);
+
+// MODAL/OVERLAY
 modalCloseButton.addEventListener('click', hideModal);
 overlay.addEventListener('click', hideModal);
+
+// COMMENT
+commentTextarea.addEventListener('keyup', monitorCommentField);
+addCommentButton.addEventListener('click', handleAddCommentClick);
