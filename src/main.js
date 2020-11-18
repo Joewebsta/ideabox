@@ -13,6 +13,8 @@ const commentTextarea = document.querySelector('.js-comment-textarea');
 const addCommentButton = document.querySelector('.js-add-comment-button');
 
 const commentsContainer = document.querySelector('.js-comments');
+
+const emptyHTML = `<li class="comment-empty-state js-comment-empty-state"><p class="empty-state">No comments...</p></li>`
 // const commentEmptyState = document.querySelector('.js-comment-empty-state');
 
 let ideas = [];
@@ -224,7 +226,6 @@ function displayComments(e) {
 
   const ideaId = +modalContent.dataset.ideaId;
   const idea = findIdea(ideaId);
-  const emptyHTML = `<li class="comment-empty-state js-comment-empty-state"><p>No comments...</p></li>`
 
   if (!idea.comments.length) {
     commentsContainer.insertAdjacentHTML('beforeend', emptyHTML);
@@ -293,14 +294,27 @@ function handleDeleteCommentClick(e) {
     const idea = findIdea(ideaId);
     const commentId = findCommentId(e);
     const comment = findComment(idea, commentId);
+    const commentIdx = findCommentIdx(idea, commentId);
     
-    comment.deleteFromStorage(idea);
+    deleteComment(idea, commentIdx);
     removeComment(e);
+    addCommentEmptyState(idea);
+    comment.deleteFromStorage(idea);
   }
+}
+
+function deleteComment(idea, commentIdx) {
+  idea.comments.splice(commentIdx, 1);
 }
 
 function removeComment(e) {
   e.target.parentElement.remove();
+}
+
+function addCommentEmptyState(idea) {
+  if (!idea.comments.length) {
+    commentsContainer.insertAdjacentHTML('beforeend', emptyHTML);
+  }
 }
 
 // HELPERS
@@ -330,6 +344,10 @@ function findCommentId(e) {
 
 function findComment(idea, commentId) {
   return idea.comments.find(comment => comment.id === commentId);
+}
+
+function findCommentIdx(idea, commentId) {
+  return idea.comments.findIndex(comment => comment.id === commentId);
 }
 
 // PAGE RELOAD
