@@ -13,7 +13,7 @@ const commentTextarea = document.querySelector('.js-comment-textarea');
 const addCommentButton = document.querySelector('.js-add-comment-button');
 
 const commentsContainer = document.querySelector('.js-comments');
-const commentEmptyState = document.querySelector('.js-comment-empty-state');
+// const commentEmptyState = document.querySelector('.js-comment-empty-state');
 
 let ideas = [];
 
@@ -220,11 +220,16 @@ function displayComments(e) {
 
   const ideaId = +modalContent.dataset.ideaId;
   const idea = findIdea(ideaId);
+  const emptyHTML = `<li class="comment-empty-state js-comment-empty-state"><p>No comments...</p></li>`
+
+  if (!idea.comments.length) {
+    commentsContainer.insertAdjacentHTML('beforeend', emptyHTML);
+    return;
+  }
 
   idea.comments.forEach(comment => {
     commentsContainer.insertAdjacentHTML('beforeend', createCommentHTML(comment));
   });
-
 }
 
 function handleAddCommentClick(e) {
@@ -247,9 +252,7 @@ function createComment() {
 }
 
 function appendComment(comment) {
-  if (!commentEmptyState.classList.contains('hide')) {
-    commentEmptyState.classList.add('hide');
-  }
+  removeCommentEmptyState();
 
   const commentHTML = createCommentHTML(comment);
   commentsContainer.insertAdjacentHTML('beforeend', commentHTML);
@@ -260,6 +263,14 @@ function createCommentHTML(comment) {
     <li class="comment">
       <p>${comment.content}</p>
     </li>`;
+}
+
+function removeCommentEmptyState() {
+  const commentEmptyState = document.querySelector('.js-comment-empty-state');
+
+  if (commentEmptyState) {
+    commentEmptyState.remove();
+  }
 }
 
 function monitorCommentField(e) {
