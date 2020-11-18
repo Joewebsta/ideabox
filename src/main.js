@@ -283,6 +283,14 @@ function monitorCommentField(e) {
   }
 }
 
+function handleDeleteCommentClick(e) {
+  removeComment(e);
+}
+
+function removeComment(e) {
+  e.target.parentElement.remove();
+}
+
 // HELPERS
 function findId(e) {
   return +e.target.closest('.card').dataset.id;
@@ -319,3 +327,4 @@ overlay.addEventListener('click', hideModal);
 // COMMENT
 commentTextarea.addEventListener('keyup', monitorCommentField);
 addCommentButton.addEventListener('click', handleAddCommentClick);
+commentsContainer.addEventListener('click', handleDeleteCommentClick);
