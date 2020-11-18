@@ -261,7 +261,7 @@ function appendComment(comment) {
 
 function createCommentHTML(comment) {
   return `
-    <li class="comment">
+    <li class="comment" data-id="${comment.id}">
       <p>${comment.content}</p>
       <img src="../assets/delete-active.svg" alt="delete icon">
     </li>`;
