@@ -7,17 +7,17 @@ class Comment {
   saveToStorage(commentIdea) {
     const ideas = this.retreiveFromStorage();
     const idea = ideas.find(idea => idea.id === commentIdea.id);
-    // const ideaIdx = ideas.findIndex(idea => idea.id === commentIdea.id);
     idea.comments.push(this);
     this.setStorage(ideas);
-    console.log(ideas);
-
-    // console.log(ideaIdx);
-    // idea.comments.push(this);
   }
 
-  deleteFromStorage() {
-    console.log('DELETE ME!', this);
+  deleteFromStorage(commentIdea) {
+    const ideas = this.retreiveFromStorage();
+    const idea = ideas.find(idea => idea.id === commentIdea.id);
+    const comments = idea.comments;
+    const commentIdx = comments.findIndex(comment => comment.id === this.id );
+    comments.splice(commentIdx, 1);
+    this.setStorage(ideas);
   }
 
   retreiveFromStorage() {

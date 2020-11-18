@@ -267,7 +267,7 @@ function createCommentHTML(comment) {
   return `
     <li class="comment" data-id="${comment.id}">
       <p>${comment.content}</p>
-      <img src="../assets/delete-active.svg" alt="delete icon">
+      <img src="../assets/delete-active.svg" class="js-delete-comment" alt="delete icon">
     </li>`;
 }
 
@@ -288,13 +288,15 @@ function monitorCommentField(e) {
 }
 
 function handleDeleteCommentClick(e) {
-  const ideaId = findCommentIdeaId(e);
-  const idea = findIdea(ideaId);
-  const commentId = findCommentId(e);
-  const comment = findComment(idea, commentId);
-  
-  comment.deleteFromStorage();
-  removeComment(e);
+  if (e.target.classList.contains('js-delete-comment')) {
+    const ideaId = findCommentIdeaId(e);
+    const idea = findIdea(ideaId);
+    const commentId = findCommentId(e);
+    const comment = findComment(idea, commentId);
+    
+    comment.deleteFromStorage(idea);
+    removeComment(e);
+  }
 }
 
 function removeComment(e) {
