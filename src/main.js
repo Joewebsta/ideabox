@@ -89,7 +89,7 @@ function populateIdeasArray() {
     ideas = [];
   } else {
     ideas = JSON.parse(localStorage.getItem('ideas'));
-    ideas = ideas.map(idea => new Idea(idea.title, idea.body, idea.id, idea.star));
+    ideas = ideas.map(idea => new Idea(idea.title, idea.body, idea.id, idea.star, idea.comments));
   }
 }
 
@@ -241,6 +241,7 @@ function handleAddCommentClick(e) {
   
   idea.comments.push(newComment);
   appendComment(newComment);
+  newComment.saveToStorage(idea);
   
   commentTextarea.value = '';
   addCommentButton.disabled = true;
