@@ -89,8 +89,12 @@ function populateIdeasArray() {
     ideas = [];
   } else {
     ideas = JSON.parse(localStorage.getItem('ideas'));
-    ideas = ideas.map(idea => new Idea(idea.title, idea.body, idea.id, idea.star, idea.comments));
+    ideas = ideas.map(idea => new Idea(idea.title, idea.body, idea.id, idea.star, populateCommentsArray(idea.comments)));
   }
+}
+
+function populateCommentsArray(comments) {
+  return comments.map(comment => new Comment(comment.id, comment.content));
 }
 
 function displayCards(ideas) {
@@ -235,7 +239,7 @@ function displayComments(e) {
 function handleAddCommentClick(e) {
   e.preventDefault();
   
-  const ideaId = +e.target.closest('.js-modal-content').dataset.ideaId;
+  const ideaId = findCommentIdeaId(e);
   const idea = findIdea(ideaId);
   const newComment = createComment();
   
@@ -249,7 +253,7 @@ function handleAddCommentClick(e) {
 
 function createComment() {
   const commentContent = commentTextarea.value;
-  return new Comment(commentContent);
+  return new Comment(Date.now(), commentContent);
 }
 
 function appendComment(comment) {
@@ -284,6 +288,12 @@ function monitorCommentField(e) {
 }
 
 function handleDeleteCommentClick(e) {
+  const ideaId = findCommentIdeaId(e);
+  const idea = findIdea(ideaId);
+  const commentId = findCommentId(e);
+  const comment = findComment(idea, commentId);
+  
+  comment.deleteFromStorage();
   removeComment(e);
 }
 
@@ -306,6 +316,18 @@ function findIdx(id) {
 
 function clearCards() {
   cards.textContent = '';
+}
+
+function findCommentIdeaId(e) {
+ return +e.target.closest('.js-modal-content').dataset.ideaId;
+}
+
+function findCommentId(e) {
+  return +e.target.parentElement.dataset.id;
+}
+
+function findComment(idea, commentId) {
+  return idea.comments.find(comment => comment.id === commentId);
 }
 
 // PAGE RELOAD

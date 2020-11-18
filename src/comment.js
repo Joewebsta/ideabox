@@ -1,7 +1,7 @@
 class Comment {
-  constructor(content) {
+  constructor(id, content) {
     this.content = content;
-    this.id = Date.now();
+    this.id = id;
   }
 
   saveToStorage(commentIdea) {
@@ -17,7 +17,7 @@ class Comment {
   }
 
   deleteFromStorage() {
-    
+    console.log('DELETE ME!', this);
   }
 
   retreiveFromStorage() {
