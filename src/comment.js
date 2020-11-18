@@ -11,11 +11,10 @@ class Comment {
     this.setStorage(ideas);
   }
 
-  deleteFromStorage(commentIdea) {
+  deleteFromStorage(ideaIdx, commentIdx) {
     const ideas = this.retreiveFromStorage();
-    const idea = ideas.find(idea => idea.id === commentIdea.id);
+    const idea = ideas[ideaIdx];
     const comments = idea.comments;
-    const commentIdx = comments.findIndex(comment => comment.id === this.id );
     comments.splice(commentIdx, 1);
     this.setStorage(ideas);
   }

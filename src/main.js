@@ -292,6 +292,7 @@ function handleDeleteCommentClick(e) {
   if (e.target.classList.contains('js-delete-comment')) {
     const ideaId = findCommentIdeaId(e);
     const idea = findIdea(ideaId);
+    const ideaIdx = findIdx(ideaId);
     const commentId = findCommentId(e);
     const comment = findComment(idea, commentId);
     const commentIdx = findCommentIdx(idea, commentId);
@@ -299,7 +300,7 @@ function handleDeleteCommentClick(e) {
     deleteComment(idea, commentIdx);
     removeComment(e);
     addCommentEmptyState(idea);
-    comment.deleteFromStorage(idea);
+    comment.deleteFromStorage(ideaIdx, commentIdx);
   }
 }
 
