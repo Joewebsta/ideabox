@@ -263,6 +263,7 @@ function createCommentHTML(comment) {
   return `
     <li class="comment">
       <p>${comment.content}</p>
+      <img src="../assets/delete-active.svg" alt="delete icon">
     </li>`;
 }
 
