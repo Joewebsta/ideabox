@@ -33,8 +33,8 @@ textarea {
 .content {
   height: 100vh;
   display: grid;
-  grid-template-columns: 300px 1fr;
-  grid-template-rows: 452px 1fr;
+  grid-template-columns: 280px 1fr;
+  grid-template-rows: auto 1fr;
   grid-template-areas: 
     "sidebar forms"
     "sidebar cards";
@@ -47,14 +47,13 @@ textarea {
   padding-top: 30px;
   grid-area: sidebar;
   display: grid;
-  gap: 30px;
   align-content: start;
 }
 
 .sidebar h1 {
   color: white;
   font-size: 24px;
-  padding: 0 20px;
+  padding: 0 20px 30px;
 }
 
 .sidebar .starred-ideas {
@@ -75,7 +74,7 @@ textarea {
   height: 50px;
   border-radius: 4px;
   border: 2px solid var(--rhino);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   padding: 10px;
   color: white;
@@ -249,59 +248,6 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
   font-size: 15px;
 }
 
-/* COMMENTS */
-/* .comment {
-  padding: 10px;
-  background-color: var(--wistful);
-  display: grid;
-}
-
-.comment img {
-  width: 28px;
-}
-
-.comment form {
-  width: 100%;
-}
-
-.comment .comment-body {
-  border-bottom: 1px solid var(--east-bay);
-  padding: 10px 0;
-}
-
-.comment .comment-body:first-child {
-  padding-top: 0;
-}
-
-.comment p:last-of-type {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.comment textarea {
-  width: 100%;
-  margin: 10px 0 8px;
-  resize: none;
-  border: 1px solid var(--rhino);
-  padding: 6px;
-}
-
-.comment button {
-  padding: 3px 6px;
-  margin-right: 4px;
-  border-radius: 4px;
-  border: 2px solid var(--butterfly-bush);
-  font-size: 12px;
-  font-weight: 700;
-  color: white;
-  background-color: var(--rhino);
-  cursor: pointer;
-}
-
-.comment .cancel {
-  background-color: var(--butterfly-bush);
-} */
-
 /* || MODAL */
 
 .modal-overlay {
@@ -437,4 +383,29 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 /* || HELPER */
 .hide {
   display: none;
+}
+
+@media screen and (max-width: 780px) {
+  
+  .content {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas: 
+    "sidebar"
+    "forms"
+    "cards";
+  }
+
+  .sidebar {
+    padding-top: 15px;
+  }
+
+  .sidebar h1 {
+    padding-bottom: 15px;
+    font-size: 20px;
+  }
+
+  .sidebar .starred-ideas {
+    display: none;
+  }
 }
