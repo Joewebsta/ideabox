@@ -34,7 +34,7 @@ textarea {
   height: 100vh;
   display: grid;
   grid-template-columns: 280px 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto;
   grid-template-areas: 
     "sidebar forms"
     "sidebar cards";
@@ -48,6 +48,11 @@ textarea {
   grid-area: sidebar;
   display: grid;
   align-content: start;
+}
+
+.sidebar img {
+  width: 30px;
+  display: none;
 }
 
 .sidebar h1 {
@@ -71,7 +76,6 @@ textarea {
 
 .sidebar button {
   width: 100%;
-  height: 50px;
   border-radius: 4px;
   border: 2px solid var(--rhino);
   font-size: 18px;
@@ -397,15 +401,29 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
   }
 
   .sidebar {
-    padding-top: 15px;
+    padding: 15px 20px 0;
+    grid-template-columns: auto 1fr;
+  }
+
+  .sidebar img {
+    display: inline-block;
+    cursor: pointer;
   }
 
   .sidebar h1 {
-    padding-bottom: 15px;
+    padding: 0 0 15px 15px;
     font-size: 20px;
   }
 
   .sidebar .starred-ideas {
     display: none;
+    grid-column: span 2;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .sidebar button {
+    font-size: 16px;
+    padding: 6px;
   }
 }
