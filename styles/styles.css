@@ -8,16 +8,27 @@ html {
 
 h1,
 h2 {
-  font-family: 'Open Sans', sans-serif;
   font-weight: 700;
 }
 
+h1,
+h2,
 p, 
 label,
 button,
 input,
 textarea {
   font-family: 'Open Sans', sans-serif;
+}
+
+button {
+  width: 100%;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 10px;
+  color: white;
+  cursor: pointer;
 }
 
 :root {
@@ -77,14 +88,8 @@ textarea {
 }
 
 .sidebar button {
-  border-radius: 4px;
   border: 2px solid var(--rhino);
-  font-size: 18px;
-  font-weight: 700;
-  padding: 10px;
-  color: white;
   background-color: var(--butterfly-bush);
-  cursor: pointer;
 }
 
 /* || FORMS */
@@ -126,16 +131,8 @@ textarea {
 }
 
 .form button {
-  width: 100%;
-  height: 50px;
-  border-radius: 4px;
   border: 2px solid var(--butterfly-bush);
-  font-size: 18px;
-  font-weight: 700;
-  padding: 10px;
-  color: white;
   background-color: var(--rhino);
-  cursor: pointer;
 }
 
 .form button:disabled {
@@ -193,9 +190,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  align-items: start;
   align-content: start;
-  grid-auto-flow: dense;
 }
 
 .card {
@@ -218,12 +213,12 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 }
 
 .card-body {
-  background-color: var(--white);
   padding: 15px;
+  display: grid;
+  gap: 16px;
 }
 
 .card-body h2 {
-  margin-bottom: 16px;
   font-size: 18px;
 }
 
