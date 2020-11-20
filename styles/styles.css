@@ -234,7 +234,6 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
   border-top: 2px solid var(--east-bay);
   padding: 2px;
   display: grid;
-  gap: 0px;
   grid-template-columns: auto auto;
   align-items: center;
   justify-content: start;
@@ -246,7 +245,6 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 }
 
 .card-footer p {
-  display: inline-block;
   color: var(--white);
   font-weight: 700;
   font-size: 15px;
@@ -270,8 +268,8 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 }
 
 .modal-content {
-  grid-row-start: 2;
   background-color: white;
+  grid-row-start: 2;
   grid-column-start: 2;
   display: grid;
   grid-template-rows: auto 1fr;
@@ -352,6 +350,8 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 .hide {
   display: none;
 }
+
+/* || RESPONSIVE STYLES */
 
 @media screen and (max-width: 780px) {
   
