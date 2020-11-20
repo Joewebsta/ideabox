@@ -12,15 +12,15 @@
 <body>
   <section class="content">
     <aside class="sidebar">
-      <img src="assets/menu.svg" class="js-menu-icon" alt="">
+      <img src="assets/menu.svg" class="js-menu-icon" alt="menu icon">
       <h1>IdeaBox</h1>
-      <section class="starred-ideas hide js-starred-ideas">
+      <section class="starred-ideas js-starred-ideas hide">
         <p>Filter Starred Ideas</p>
         <button class="js-starred-button" data-filtered="false">Show Starred Ideas</button>
       </section>
     </aside>
-    <section class="forms">
-      <form class="card-form js-card-form" action="">
+    <section class="form-container">
+      <form class="form card-form js-card-form" action="">
         <p>
           <label for="title">Title</label>
           <input class="js-card-form-title" type="text" id="title" name="title">
@@ -33,7 +33,7 @@
           <button type="submit" class="js-save-button" disabled>Save</button>
         </p>
       </form>
-      <form class="search-form" action="">
+      <form class="form search-form" action="">
         <p>
         <div class="search-icon"></div>
         <input type="search" class="js-search" name="search" id="search" placeholder="Search ideas">
@@ -49,7 +49,7 @@
         </header>
         <section class="modal-body">
           <ul class="comments js-comments"></ul>
-          <form action="" class="comment-form">
+          <form action="" class="form comment-form">
             <p>
               <textarea name="comment-textarea" class="js-comment-textarea" placeholder="Enter comment..."></textarea>
             </p>
@@ -63,6 +63,7 @@
     <script src='./src/idea.js'></script>
     <script src='./src/comment.js'></script>
     <script src="./src/main.js"></script>
+  </section>
 </body>
 
 </html>

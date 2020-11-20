@@ -1,6 +1,7 @@
 html {
   box-sizing: border-box;
 }
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -29,6 +30,8 @@ textarea {
   --whisper: #EAEAF4;
   --white: #fff;
 }
+ 
+/* || PAGE LAYOUT */
 
 .content {
   height: 100vh;
@@ -74,7 +77,6 @@ textarea {
 }
 
 .sidebar button {
-  width: 100%;
   border-radius: 4px;
   border: 2px solid var(--rhino);
   font-size: 18px;
@@ -86,8 +88,7 @@ textarea {
 }
 
 /* || FORMS */
-
-.forms {
+.form-container {
   padding: 20px;
   grid-area: forms;
   display: grid;
@@ -97,27 +98,25 @@ textarea {
   background-color: var(--wistful);
 }
 
-.card-form {
+.form {
   display: grid;
-  gap: 25px;
 }
 
-.card-form label {
+.form label {
   display: block;
   font-weight: 700;
   margin-bottom: 10px;
 }
 
-.card-form input {
+.form input {
   width: 100%;
   height: 50px;
   border-radius: 4px;
   border: 2px solid var(--butterfly-bush);
   font-size: 18px;
-  padding: 0 10px;
 }
 
-.card-form textarea {
+.form textarea {
   width: 100%;
   resize: none;
   border-radius: 4px;
@@ -126,12 +125,12 @@ textarea {
   padding: 10px;
 }
 
-.card-form button{
+.form button {
   width: 100%;
   height: 50px;
   border-radius: 4px;
   border: 2px solid var(--butterfly-bush);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   padding: 10px;
   color: white;
@@ -139,13 +138,29 @@ textarea {
   cursor: pointer;
 }
 
-.card-form button:disabled {
+.form button:disabled {
   background:var(--wistful);
   cursor: not-allowed;
 }
 
+.card-form {
+  gap: 25px;
+}
+
+.card-form input {
+  padding: 0 10px;
+}
+
+.card-form button{
+  font-size: 20px;
+}
+
 .search-form {
   position: relative;
+}
+
+.search-form input {
+  padding: 0 10px 0 56px ;
 }
 
 .search-form .search-icon {
@@ -170,15 +185,6 @@ input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration { display: none; }
-
-.search-form input {
-  width: 100%;
-  height: 50px;
-  border-radius: 4px;
-  border: 2px solid var(--butterfly-bush);
-  font-size: 18px;
-  padding: 0 10px 0 56px ;
-}
 
 /* || CARDS */
 
@@ -264,24 +270,16 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
   background-color: rgba(0,0,0,0.4);
   padding: 0 15px;
   display: grid;
-  /* justify-content: center; */
-  /* padding-top: 100px; */
   grid-template-columns: 1fr minmax(auto, 540px) 1fr;
   grid-template-rows: 50px auto 1fr;
 }
 
 .modal-content {
   grid-row-start: 2;
-  /* min-height: 500px; */
-  /* max-height: 800px;  */
   background-color: white;
   grid-column-start: 2;
   display: grid;
   grid-template-rows: auto 1fr;
-  /* align-items: start; */
-  /* margin: 15% auto; */
-  /* padding: 20px; */
-  /* width: 80%; */
   border-radius: 10px;
 }
 
@@ -340,7 +338,6 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 
  .comment:last-child {
   border-bottom: none;
-  /* padding-bottom: 0; */
  }
 
  .empty-state {
@@ -352,36 +349,9 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
   padding: 15px;
   background-color: var(--wistful); 
   border-radius: 0 0 4px 4px;
-  display: grid;
   gap: 15px;
  }
 
- .comment-form textarea {
-  width: 100%;
-  resize: none;
-  border-radius: 4px;
-  border: 2px solid var(--butterfly-bush);
-  font-size: 18px;
-  padding: 10px;
- }
-
-.comment-form button{
-  width: 100%;
-  height: 50px;
-  border-radius: 4px;
-  border: 2px solid var(--butterfly-bush);
-  font-size: 18px;
-  font-weight: 700;
-  padding: 10px;
-  color: white;
-  background-color: var(--rhino);
-  cursor: pointer;
-}
-
-.comment-form button:disabled {
-  background:var(--wistful);
-  cursor: not-allowed;
-}
 
 /* || HELPER */
 .hide {
