@@ -23,10 +23,36 @@ const commentTextarea = document.querySelector('.js-comment-textarea');
 const addCommentButton = document.querySelector('.js-add-comment-button');
 const commentsContainer = document.querySelector('.js-comments');
 
+// ************ EVENT LISTENERS ************
+
 // COMMENTS
 const emptyHTML = `<li class="comment-empty-state js-comment-empty-state"><p class="empty-state">No comments...</p></li>`
 
-// 
+// PAGE RELOAD
+window.addEventListener('load', handlePageLoad);
+
+// CARD FORM
+saveButton.addEventListener('click', handleSaveBtnClick);
+
+// CARDS
+cards.addEventListener('click', handleCardClick);
+cardForm.addEventListener('keyup', monitorCardFields);
+showStarredButton.addEventListener('click', handleShowStarredClick);
+searchInput.addEventListener('keyup', handleSearch);
+
+// MODAL/OVERLAY
+modalCloseButton.addEventListener('click', hideModal);
+overlay.addEventListener('click', hideModal);
+
+// COMMENT
+commentTextarea.addEventListener('keyup', monitorCommentField);
+addCommentButton.addEventListener('click', handleAddCommentClick);
+commentsContainer.addEventListener('click', handleDeleteCommentClick);
+
+// MENU
+menuButton.addEventListener('click', toggleMenuOpenState);
+
+// LIVE LIST OF PAGE IDEAS
 let ideas = [];
 
 // SAVE AND DISPLAY IDEA
@@ -42,10 +68,7 @@ function handleSaveBtnClick(e) {
 }
 
 function createIdea() {
-  const title = cardTitle.value;
-  const body = cardBody.value;
-  const id = Date.now();
-  return new Idea(title, body, id);
+  return new Idea(cardTitle.value, cardBody.value, Date.now());
 }
 
 function saveIdea(idea) {
@@ -371,27 +394,3 @@ function findComment(idea, commentId) {
 function findCommentIdx(idea, commentId) {
   return idea.comments.findIndex(comment => comment.id === commentId);
 }
-
-// PAGE RELOAD
-window.addEventListener('load', handlePageLoad);
-
-// CARD FORM
-saveButton.addEventListener('click', handleSaveBtnClick);
-
-// CARDS
-cards.addEventListener('click', handleCardClick);
-cardForm.addEventListener('keyup', monitorCardFields);
-showStarredButton.addEventListener('click', handleShowStarredClick);
-searchInput.addEventListener('keyup', handleSearch);
-
-// MODAL/OVERLAY
-modalCloseButton.addEventListener('click', hideModal);
-overlay.addEventListener('click', hideModal);
-
-// COMMENT
-commentTextarea.addEventListener('keyup', monitorCommentField);
-addCommentButton.addEventListener('click', handleAddCommentClick);
-commentsContainer.addEventListener('click', handleDeleteCommentClick);
-
-// MENU
-menuButton.addEventListener('click', toggleMenuOpenState);
