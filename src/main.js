@@ -36,7 +36,7 @@ saveButton.addEventListener('click', handleSaveBtnClick);
 
 // CARDS
 cards.addEventListener('click', handleCardClick);
-cardForm.addEventListener('keyup', monitorCardFields);
+cardForm.addEventListener('keyup', monitorCardFormFields);
 showStarredButton.addEventListener('click', handleShowStarredClick);
 searchInput.addEventListener('keyup', handleSearch);
 
@@ -102,7 +102,7 @@ function createCardHTML(title, body, id, star) {
 
 // FORM VALIDATION
 
-function monitorCardFields() {
+function monitorCardFormFields() {
   if (cardTitle.value && cardBody.value) {
     saveButton.disabled = false;
   } else {
@@ -118,14 +118,10 @@ function handlePageLoad() {
 }
 
 function populateIdeasArray() {
-  const localStorageIdeas = localStorage.getItem('ideas');
-  
-  if (!localStorageIdeas) {
-    ideas = [];
-  } else {
-    ideas = JSON.parse(localStorage.getItem('ideas'));
-    ideas = ideas.map(idea => new Idea(idea.title, idea.body, idea.id, idea.star, populateCommentsArray(idea.comments)));
-  }
+  if (!localStorage.getItem('ideas')) return;
+
+  ideas = JSON.parse(localStorage.getItem('ideas'))
+  ideas = ideas.map(idea => new Idea(idea.title, idea.body, idea.id, idea.star, populateCommentsArray(idea.comments)));
 }
 
 function populateCommentsArray(comments) {
