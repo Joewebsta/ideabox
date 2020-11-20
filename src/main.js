@@ -251,9 +251,10 @@ function hideModal(e) {
 // COMMENT
 function handleCardCommentClick(e) {
   const id = findId(e);
+  const idea = findIdea(id);
   showModal();
   updateIdeaId(id);
-  displayComments(e);
+  displayComments(idea);
   commentTextarea.focus();
 }
 
@@ -261,11 +262,8 @@ function updateIdeaId(id) {
   modalContent.dataset.ideaId = id;
 }
 
-function displayComments(e) {
+function displayComments(idea) {
   commentsContainer.textContent = '';
-
-  const ideaId = +modalContent.dataset.ideaId;
-  const idea = findIdea(ideaId);
 
   if (!idea.comments.length) {
     commentsContainer.insertAdjacentHTML('beforeend', emptyHTML);
