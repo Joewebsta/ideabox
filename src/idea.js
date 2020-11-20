@@ -24,10 +24,10 @@ class Idea {
     this.setStorage(ideas);
   }
 
-  updateIdea(key, val) {
+  updateIdea(prop, val) {
     const ideas = this.retreiveFromStorage();
     const ideaIdx = ideas.findIndex(idea => idea.id === this.id);
-    ideas[ideaIdx][key] = val;
+    ideas[ideaIdx][prop] = val;
     this.setStorage(ideas);
   }
 

@@ -136,7 +136,7 @@ function displayCards(ideas) {
 }
 
 // MENU
-function toggleMenuOpenState(e) {
+function toggleMenuOpenState() {
   if (starredIdeasContainer.classList.contains('hide')) {
     starredIdeasContainer.classList.remove('hide');
     menuButton.src = 'assets/menu-close.svg';
