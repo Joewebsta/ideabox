@@ -181,7 +181,7 @@ function handleShowStarredClick() {
   clearCards();
   updateFilteredAttr(filteredStatus);
   updateStarredBtnText(filteredStatus);
-  updateDisplayedCards(starredIdeas, filteredStatus)
+  updateDisplayedCards(starredIdeas, filteredStatus);
 }
 
 function filterIdeasByStarred() {
@@ -211,7 +211,7 @@ function deleteIdea(e) {
   const idea = findIdea(id); 
   const ideaIdx = findIdx(id);
 
-  idea.deleteFromStorage();
+  idea.deleteFromStorage(ideaIdx);
   deleteFromIdeas(ideaIdx);
   removeCard(e);
  }

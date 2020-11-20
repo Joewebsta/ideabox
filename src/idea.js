@@ -17,9 +17,8 @@ class Idea {
     this.setStorage(ideas);
   }
 
-  deleteFromStorage() {
+  deleteFromStorage(ideaIdx) {
     const ideas = this.retreiveFromStorage();
-    const ideaIdx = ideas.findIndex(idea => idea.id === this.id);
     ideas.splice(ideaIdx, 1);
     this.setStorage(ideas);
   }
