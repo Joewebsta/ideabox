@@ -8,7 +8,9 @@ class Idea {
   }
 
   saveToStorage() {
-    this.initializeStorage();
+    if (!localStorage.length) {
+      this.initializeStorage();
+    }
     
     const ideas = this.retreiveFromStorage();
     ideas.push(this);
@@ -38,8 +40,6 @@ class Idea {
   }
 
   initializeStorage() {
-    if (!localStorage.length) {
-      localStorage.setItem('ideas', '[]');
-    }
+    localStorage.setItem('ideas', '[]');
   }
 }
