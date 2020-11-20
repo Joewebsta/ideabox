@@ -1,23 +1,32 @@
+// SIDEBAR
+const starredIdeasContainer = document.querySelector('.js-starred-ideas');
+const showStarredButton = document.querySelector('.js-starred-button');
+const menuButton = document.querySelector('.js-menu-icon');
+
+// CARD FORM
 const cardForm = document.querySelector(".js-card-form");
 const cardTitle = document.querySelector(".js-card-form-title");
 const cardBody = document.querySelector(".js-card-form-body");
 const saveButton = document.querySelector('.js-save-button');
-const cards = document.querySelector('.js-cards');
-const menuButton = document.querySelector('.js-menu-icon');
-const starredIdeasContainer = document.querySelector('.js-starred-ideas');
-const showStarredButton = document.querySelector('.js-starred-button');
 const searchInput = document.querySelector('.js-search');
 
+// CARDS
+const cards = document.querySelector('.js-cards');
+
+// OVERLAY AND MODAL
 const overlay = document.querySelector('.js-modal-overlay');
 const modalContent = document.querySelector('.js-modal-content');
 const modalCloseButton = document.querySelector('.js-modal-close-button');
+
+// COMMENT FORM
 const commentTextarea = document.querySelector('.js-comment-textarea');
 const addCommentButton = document.querySelector('.js-add-comment-button');
-
 const commentsContainer = document.querySelector('.js-comments');
+
+// COMMENTS
 const emptyHTML = `<li class="comment-empty-state js-comment-empty-state"><p class="empty-state">No comments...</p></li>`
 
-
+// 
 let ideas = [];
 
 // SAVE AND DISPLAY IDEA
