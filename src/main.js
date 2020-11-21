@@ -19,6 +19,7 @@ const modalContent = document.querySelector('.js-modal-content');
 const modalCloseButton = document.querySelector('.js-modal-close-button');
 
 // COMMENT FORM
+const commentForm = document.querySelector('.js-comment-form');
 const commentTextarea = document.querySelector('.js-comment-textarea');
 const addCommentButton = document.querySelector('.js-add-comment-button');
 const commentsContainer = document.querySelector('.js-comments');
@@ -65,8 +66,8 @@ function handleSaveBtnClick(e) {
   const idea = createIdea();
   saveIdea(idea);
   displayIdea(idea);
-  cardForm.reset();
-  saveButton.disabled = true;
+
+  resetForm(cardForm, saveButton);
 }
 
 function createIdea() {
@@ -110,6 +111,11 @@ function monitorCardFormFields() {
   } else {
     saveButton.disabled = true;
   }
+}
+
+function resetForm(formElem, buttonElem) {
+  formElem.reset();
+  buttonElem.disabled = true;
 }
 
 // RELOAD PAGE AND DISPLAY IDEAS
@@ -288,8 +294,7 @@ function handleAddCommentClick(e) {
   appendComment(newComment);
   newComment.saveToStorage(idea);
   
-  commentTextarea.value = '';
-  addCommentButton.disabled = true;
+  resetForm(commentForm, addCommentButton);
 }
 
 function createComment() {
