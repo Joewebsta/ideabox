@@ -52,6 +52,8 @@ commentsContainer.addEventListener('click', handleDeleteCommentClick);
 // MENU
 menuButton.addEventListener('click', toggleMenuOpenState);
 
+document.addEventListener('keyup', hideModal);
+
 // LIVE LIST OF PAGE IDEAS
 let ideas = [];
 
@@ -193,7 +195,7 @@ function updateFilteredAttr(filteredStatus) {
 }
 
 function updateStarredBtnText(filteredStatus) {
-  showStarredButton.textContent = (filteredStatus === 'false') ? 'Show All Ideas' : 'Show Starred Ideas'; ;
+  showStarredButton.textContent = (filteredStatus === 'false') ? 'Show All Ideas' : 'Show Starred Ideas';
 }
 
 function updateDisplayedCards(starredIdeas, filteredStatus) {
@@ -243,7 +245,7 @@ function showModal() {
 }
 
 function hideModal(e) {
-  if (e.target === overlay || e.target === modalCloseButton) {
+  if (e.target === overlay || e.target === modalCloseButton || e.key === 'Escape') {
     overlay.classList.add('hide');
   }  
 }
