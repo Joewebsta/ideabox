@@ -4,10 +4,9 @@ class Comment {
     this.id = id;
   }
 
-  saveToStorage(commentIdea) {
+  saveToStorage(ideaIdx) {
     const ideas = this.retreiveFromStorage();
-    const idea = ideas.find(idea => idea.id === commentIdea.id);
-    idea.comments.push(this);
+    ideas[ideaIdx].comments.push(this);
     this.setStorage(ideas);
   }
 

@@ -288,11 +288,12 @@ function handleAddCommentClick(e) {
   
   const ideaId = findCommentIdeaId(e);
   const idea = findIdea(ideaId);
+  const ideaIdx = findIdx(ideaId);
   const newComment = createComment();
   
   idea.comments.push(newComment);
   appendComment(newComment);
-  newComment.saveToStorage(idea);
+  newComment.saveToStorage(ideaIdx);
   
   resetForm(commentForm, addCommentButton);
 }
