@@ -321,17 +321,12 @@ function createCommentHTML(comment) {
 function removeCommentEmptyState() {
   const commentEmptyState = document.querySelector('.js-comment-empty-state');
 
-  if (commentEmptyState) {
-    commentEmptyState.remove();
-  }
+  if (commentEmptyState) commentEmptyState.remove();
 }
 
 function monitorCommentField(e) {
-  if (e.target.value) {
-    addCommentButton.disabled = false;
-  } else {
-    addCommentButton.disabled = true;
-  }
+  const commentInputField = e.target.value;
+  addCommentButton.disabled = commentInputField ? false : true;
 }
 
 function handleDeleteCommentClick(e) {
